@@ -7,8 +7,9 @@ import { localDb } from "@/integrations/local-db";
 import { useToast } from "@/hooks/use-toast";
 import { toast } from "sonner";
 import { Logo } from "@/components/Logo";
-import { Calendar, Clock, User, DollarSign, Star } from "lucide-react";
+import { Calendar, Clock, User, DollarSign, Star, AlertCircle } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
+import PatientQueueManager from "@/components/PatientQueueManager";
 
 const DoctorDashboard = () => {
   const navigate = useNavigate();
@@ -187,12 +188,21 @@ const DoctorDashboard = () => {
           </Card>
         </div>
 
-        <Tabs defaultValue="pending" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 max-w-md">
+        <Tabs defaultValue="queue" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 max-w-2xl">
+            <TabsTrigger value="queue">Patient Queue</TabsTrigger>
             <TabsTrigger value="pending">Pending</TabsTrigger>
             <TabsTrigger value="confirmed">Confirmed</TabsTrigger>
             <TabsTrigger value="completed">Completed</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="queue" className="mt-6">
+            <PatientQueueManager 
+              doctorId={doctorInfo.id}
+              appointmentDate={new Date().toISOString().split('T')[0]}
+              onQueueUpdate={() => fetchAppointments(doctorInfo.id)}
+            />
+          </TabsContent>
 
           <TabsContent value="pending" className="mt-6">
             <div className="space-y-4">
