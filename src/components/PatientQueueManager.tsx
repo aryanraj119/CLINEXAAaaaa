@@ -29,7 +29,7 @@ interface PatientQueueManagerProps {
   onQueueUpdate?: () => void;
 }
 
-export const PatientQueueManager = ({
+const PatientQueueManager = ({
   doctorId,
   appointmentDate,
   onQueueUpdate
