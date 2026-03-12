@@ -1,73 +1,45 @@
-# Welcome to your Lovable project
+# Clinexa - Healthcare Booking Platform
 
-## Project info
+A full-featured healthcare appointment booking application built with React, TypeScript, and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/6154f8df-7415-40af-8888-4f3a716ea4c9
+## Features
 
-## How can I edit this code?
+- **Patient Registration & Login** - Secure authentication system for patients
+- **Doctor Portal** - Separate registration and login for doctors
+- **Doctor Browsing** - Search and filter doctors by specialization
+- **Appointment Booking** - Book appointments with date/time selection
+- **Payment Integration** - Support for cash and online payments
+- **Doctor Dashboard** - Manage appointments and patient details
+- **Blood Bank Management** - Track blood inventory across banks
+- **Emergency Blood Requests** - Create and respond to urgent blood needs
+- **Donor Profiles** - Blood type preferences and availability
+- **Reviews & Ratings** - Patient reviews for doctors
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- React 18 + TypeScript
+- Vite
+- Tailwind CSS
+- Shadcn UI
+- React Router
+- Local Storage Database
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6154f8df-7415-40af-8888-4f3a716ea4c9) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+```bash
+# Install dependencies
+npm install
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Admin & Authentication
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Admin Dashboard**: `/admin/db` - View all registered users and data
+- **Doctor Portal**: `/doctor-auth` - Doctor registration and login
+- **Patient Auth**: `/auth` - Patient registration and login
 
-**Use GitHub Codespaces**
+## Data Storage
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/6154f8df-7415-40af-8888-4f3a716ea4c9) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The application uses a local database stored in browser's localStorage. No external database setup required.
