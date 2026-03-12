@@ -72,7 +72,7 @@ const Doctors = () => {
     const { data } = await query;
     
     if (data) {
-      doctorsData = (data as any[]).filter((doc: any) => doc.verified === true).map((doc: any) => ({
+      doctorsData = (data as any[]).filter((doc: any) => doc.verified === true || doc.verified === undefined).map((doc: any) => ({
         ...doc,
         specialization: specMap.get(doc.specialization_id) || { name: '', icon: '' }
       }));
