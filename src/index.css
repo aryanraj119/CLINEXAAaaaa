@@ -2,118 +2,125 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================================
+   CLINEXA DESIGN SYSTEM — Healthcare Dark Teal Theme
+   All color values are in HSL format
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    /* Nike-inspired theme - bold, energetic, modern */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
+    /* ── Backgrounds ── */
+    --background: 214 50% 97%;
+    --foreground: 215 28% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
+    /* ── Cards & Surfaces ── */
+    --card: 210 60% 99%;
+    --card-foreground: 215 28% 14%;
+    --popover: 210 55% 98%;
+    --popover-foreground: 215 28% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
+    /* ── Primary: Teal/Cyan ── */
+    --primary: 193 88% 42%;
+    --primary-foreground: 0 0% 100%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 24 100% 50%;
+    /* ── Secondary: Deep Ocean Blue ── */
+    --secondary: 210 100% 40%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    /* ── Muted ── */
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 16% 48%;
 
-    --accent: 24 100% 50%;
+    /* ── Accent: Emerald Green (health) ── */
+    --accent: 158 72% 40%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    /* ── Destructive ── */
+    --destructive: 0 84% 58%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 9%;
+    /* ── Borders & Inputs ── */
+    --border: 210 30% 88%;
+    --input: 210 30% 90%;
+    --ring: 193 88% 42%;
 
-    --radius: 0.125rem;
-    
-    /* Nike brand colors */
-    --nike-orange: 24 100% 50%;
-    --nike-black: 0 0% 9%;
-    --nike-gray: 0 0% 45%;
-    --success: 142 71% 45%;
-    
-    /* Bold Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 20%));
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 100%));
-    --gradient-accent: linear-gradient(135deg, hsl(24 100% 50%), hsl(16 100% 45%));
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 20px -5px rgb(0 0 0 / 0.15);
-    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    
-    /* Transitions */
+    /* ── Radius ── */
+    --radius: 0.5rem;
+
+    /* ── Custom Brand Tokens ── */
+    --success: 142 71% 42%;
+    --warning: 38 92% 50%;
+    --info: 193 88% 42%;
+
+    /* ── Gradients ── */
+    --gradient-primary: linear-gradient(135deg, hsl(193 88% 42%), hsl(210 100% 40%));
+    --gradient-hero: linear-gradient(160deg, hsl(214 50% 97%), hsl(210 60% 94%));
+    --gradient-accent: linear-gradient(135deg, hsl(158 72% 40%), hsl(175 80% 36%));
+
+    /* ── Shadows ── */
+    --shadow-sm: 0 1px 3px 0 rgb(0 80 120 / 0.08);
+    --shadow-md: 0 4px 12px -2px rgb(0 80 120 / 0.12);
+    --shadow-lg: 0 10px 24px -6px rgb(0 80 120 / 0.18);
+    --shadow-xl: 0 20px 40px -10px rgb(0 80 120 / 0.25);
+
+    /* ── Transitions ── */
     --transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* ── Sidebar ── */
+    --sidebar-background: 210 40% 96%;
+    --sidebar-foreground: 215 28% 22%;
+    --sidebar-primary: 193 88% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 35% 90%;
+    --sidebar-accent-foreground: 215 28% 20%;
+    --sidebar-border: 210 30% 86%;
+    --sidebar-ring: 193 88% 42%;
   }
 
   .dark {
-    --background: 0 0% 9%;
-    --foreground: 0 0% 98%;
+    /* ── Dark Mode: Deep Navy Medical Theme ── */
+    --background: 220 45% 7%;
+    --foreground: 210 35% 92%;
 
-    --card: 0 0% 14%;
-    --card-foreground: 0 0% 98%;
+    --card: 220 40% 10%;
+    --card-foreground: 210 30% 90%;
 
-    --popover: 0 0% 14%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 220 40% 10%;
+    --popover-foreground: 210 30% 90%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --primary: 193 88% 48%;
+    --primary-foreground: 220 45% 7%;
 
-    --secondary: 24 100% 50%;
+    --secondary: 210 85% 52%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 220 35% 14%;
+    --muted-foreground: 215 20% 55%;
 
-    --accent: 24 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 158 72% 48%;
+    --accent-foreground: 220 45% 7%;
 
-    --destructive: 0 63% 31%;
+    --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 98%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 220 30% 18%;
+    --input: 220 30% 16%;
+    --ring: 193 88% 48%;
+
+    --success: 142 71% 48%;
+
+    --sidebar-background: 220 42% 9%;
+    --sidebar-foreground: 210 30% 85%;
+    --sidebar-primary: 193 88% 48%;
+    --sidebar-primary-foreground: 220 45% 7%;
+    --sidebar-accent: 220 35% 14%;
+    --sidebar-accent-foreground: 210 30% 85%;
+    --sidebar-border: 220 30% 16%;
+    --sidebar-ring: 193 88% 48%;
   }
 }
 
@@ -122,7 +129,61 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ── Floating Chat Button ── */
+.hc-float-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(193 88% 42%), hsl(210 100% 40%));
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 8px 24px rgba(0, 180, 216, 0.5);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-decoration: none;
+  color: white;
+  animation: hc-pulse-glow 2.5s ease-in-out infinite;
+}
+.hc-float-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 12px 32px rgba(0, 180, 216, 0.7);
+}
+.hc-float-btn-tooltip {
+  position: absolute;
+  right: 70px;
+  white-space: nowrap;
+  background: rgba(5, 13, 26, 0.9);
+  color: #cce8f4;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  border: 1px solid rgba(0, 180, 216, 0.3);
+}
+.hc-float-btn:hover .hc-float-btn-tooltip { opacity: 1; }
+
+@keyframes hc-pulse-glow {
+  0%, 100% { box-shadow: 0 8px 24px rgba(0,180,216,0.4); }
+  50% { box-shadow: 0 8px 32px rgba(0,180,216,0.8), 0 0 0 8px rgba(0,180,216,0.1); }
 }

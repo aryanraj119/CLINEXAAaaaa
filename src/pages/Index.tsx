@@ -52,6 +52,9 @@ const Index = () => {
           </Link>
           <div className="flex items-center gap-4">
             <Button variant="ghost" asChild>
+              <Link to="/health-chat">Health Chat</Link>
+            </Button>
+            <Button variant="ghost" asChild>
               <Link to="/blood-bank">Blood Bank</Link>
             </Button>
             <Button variant="ghost" asChild>
@@ -205,6 +208,12 @@ const Index = () => {
           <p>© 2025 Clinexa. Your trusted healthcare booking platform.</p>
         </div>
       </footer>
+
+      {/* Floating AI Chat Button */}
+      <Link to="/health-chat" className="hc-float-btn" title="AI Health Chat">
+        🩺
+        <span className="hc-float-btn-tooltip">Ask AI MedBot</span>
+      </Link>
     </div>
   );
 };

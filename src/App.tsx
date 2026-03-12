@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Appointments from "./pages/Appointments";
 import DoctorDashboard from "./pages/DoctorDashboard";
 import BloodBank from "./pages/BloodBank";
+import HealthcareChatbot from "./pages/HealthcareChatbot";
 import NotFound from "./pages/NotFound";
 import DatabaseViewer from "./pages/DatabaseViewer";
 import DoctorAuth from "./pages/DoctorAuth";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/blood-bank" element={<BloodBank />} />
           <Route path="/admin/db" element={<DatabaseViewer />} />
           <Route path="/doctor-auth" element={<DoctorAuth />} />
+          <Route path="/health-chat" element={<HealthcareChatbot />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
