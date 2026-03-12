@@ -116,6 +116,7 @@ const DoctorDetail = () => {
       payment_method: paymentMethod,
       payment_amount: doctor.consultation_fee,
       payment_status: paymentMethod === "online" ? "completed" : "pending",
+      created_at: new Date().toISOString(),
     });
 
     if (error) {

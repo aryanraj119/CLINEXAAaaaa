@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Logo } from "@/components/Logo";
-import { runQuery, insertRecord, generateId } from "@/integrations/local-db";
+import { localDb, runQuery, insertRecord, generateId, hashPassword } from "@/integrations/local-db";
 
 const SPECIALIZATIONS = [
   { id: "spec-1", name: "Ophthalmology" },
@@ -34,7 +34,12 @@ const DoctorAuth = () => {
     setLoading(true);
     setError("");
 
-    const users = runQuery("users").filter((u: any) => u.email === email && u.password === password && u.is_doctor);
+    const hashedPassword = await hashPassword(password);
+    const users = runQuery("users").filter((u: any) => 
+      u.email.toLowerCase().trim() === email.toLowerCase().trim() && 
+      u.password === hashedPassword && 
+      u.is_doctor
+    );
     const roles = runQuery("user_roles").filter((r: any) => r.role === "doctor" && users.some((u: any) => u.id === r.user_id));
 
     if (roles.length > 0) {
@@ -48,6 +53,7 @@ const DoctorAuth = () => {
         } else if (!doctor.verified) {
           setError("Your account is pending verification. Please wait for admin approval.");
         } else {
+          await localDb.auth.signInWithPassword({ email, password });
           navigate("/doctor-dashboard");
         }
       } else {
@@ -81,10 +87,12 @@ const DoctorAuth = () => {
     const userId = generateId();
     const doctorId = generateId();
 
+    const hashedPassword = await hashPassword(password);
+
     insertRecord("users", { 
       id: userId, 
       email, 
-      password, 
+      password: hashedPassword, 
       full_name: name, 
       is_doctor: true,
       created_at: new Date().toISOString() 
@@ -144,6 +152,11 @@ const DoctorAuth = () => {
           </TabsList>
 
           <TabsContent value="signin">
+            <div className="mb-4 p-3 bg-muted rounded-lg text-sm">
+              <p className="font-medium mb-1">Demo Credentials:</p>
+              <p className="text-muted-foreground">Email: <code className="text-foreground">sarah.johnson@clinexa.com</code></p>
+              <p className="text-muted-foreground">Password: <code className="text-foreground">doctor123</code></p>
+            </div>
             <form onSubmit={handleSignIn} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>

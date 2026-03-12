@@ -15,6 +15,7 @@ import HealthcareChatbot from "./pages/HealthcareChatbot";
 import NotFound from "./pages/NotFound";
 import DatabaseViewer from "./pages/DatabaseViewer";
 import DoctorAuth from "./pages/DoctorAuth";
+import LabTests from "./pages/LabTests";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const App = () => (
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
             <Route path="/blood-bank" element={<BloodBank />} />
+            <Route path="/lab-tests" element={<LabTests />} />
             <Route path="/admin/db" element={<DatabaseViewer />} />
             <Route path="/doctor-auth" element={<DoctorAuth />} />
             <Route path="/health-chat" element={<HealthcareChatbot />} />

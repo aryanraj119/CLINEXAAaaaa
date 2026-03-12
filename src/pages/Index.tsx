@@ -14,8 +14,19 @@ interface Specialization {
   description: string;
 }
 
+interface LabTest {
+  id: string;
+  name: string;
+  prep: string;
+  price: number;
+  lab_name: string;
+  turnaround: string;
+  summary: string;
+}
+
 const Index = () => {
   const [specializations, setSpecializations] = useState<Specialization[]>([]);
+  const [labTests, setLabTests] = useState<LabTest[]>([]);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -29,6 +40,7 @@ const Index = () => {
     });
 
     fetchSpecializations();
+    fetchLabHighlights();
 
     return () => subscription.unsubscribe();
   }, []);
@@ -40,6 +52,16 @@ const Index = () => {
       .order("name", { ascending: true });
     
     if (result.data) setSpecializations(result.data as Specialization[]);
+  };
+
+  const fetchLabHighlights = async () => {
+    const result = await localDb
+      .from("lab_tests")
+      .select("*")
+      .order("name", { ascending: true })
+      .limit(3);
+
+    if (result.data) setLabTests(result.data as LabTest[]);
   };
 
   return (
@@ -56,6 +78,9 @@ const Index = () => {
             </Button>
             <Button variant="ghost" asChild>
               <Link to="/blood-bank">Blood Bank</Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link to="/lab-tests">Lab Tests</Link>
             </Button>
             <Button variant="ghost" asChild>
               <Link to="/admin/db">Admin</Link>
@@ -183,6 +208,69 @@ const Index = () => {
                 <p className="text-muted-foreground">{feature.description}</p>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lab Tests Highlight */}
+      <section className="py-20 px-4 bg-background/80">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">
+              Diagnostics
+            </p>
+            <h2 className="text-4xl font-bold text-foreground">
+              Trusted Lab Testing, Fast Results
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Book across a curated network of partner labs that deliver quick
+              prep guidance, same-day pickups, and digitized results through
+              Clinexa.
+            </p>
+            <Button variant="secondary" asChild className="text-lg px-8">
+              <Link to="/lab-tests">Explore Lab Tests</Link>
+            </Button>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {labTests.length > 0
+              ? labTests.map((test) => (
+                  <Card
+                    key={test.id}
+                    className="border border-border p-6 shadow-lg transition hover:border-primary/50"
+                  >
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>{test.lab_name}</span>
+                  <span>{test.turnaround}</span>
+                </div>
+                <h3 className="mt-3 text-2xl font-semibold text-foreground">
+                  {test.name}
+                </h3>
+                <p className="text-xs uppercase tracking-[0.2em] text-primary">
+                  {test.category}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {test.summary}
+                </p>
+                    <div className="mt-4 flex items-baseline justify-between text-xl font-bold text-foreground">
+                      <span>${test.price}</span>
+                      <span className="text-xs uppercase text-muted-foreground">
+                        {test.location}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Prep: {test.prep}
+                    </p>
+                  </Card>
+                ))
+              : Array.from({ length: 3 }).map((_, idx) => (
+                  <Card key={idx} className="border border-dashed border-border/50 p-6">
+                    <div className="h-6 w-40 animate-pulse rounded bg-muted/70" />
+                    <div className="mt-2 h-4 w-32 animate-pulse rounded bg-muted/70" />
+                    <div className="mt-4 h-3 w-16 animate-pulse rounded bg-muted/70" />
+                    <div className="mt-3 h-3 w-20 animate-pulse rounded bg-muted/70" />
+                  </Card>
+                ))}
           </div>
         </div>
       </section>

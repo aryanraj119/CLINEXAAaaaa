@@ -14,6 +14,7 @@ const SCHEMA = {
   emergency_blood_requests: [] as any[],
   blood_notifications: [] as any[],
   donation_requests: [] as any[],
+  lab_tests: [] as any[],
   user_roles: [] as any[]
 };
 
@@ -92,16 +93,119 @@ const SEED_DATA: typeof SCHEMA = {
     { id: 'bi-24', blood_bank_id: 'bb-3', blood_type: 'O-', units_available: 10, last_updated: new Date().toISOString() }
   ],
   users: [
-    { id: 'admin-1', email: 'admin@clinexa.com', password: 'admin123', full_name: 'Admin', is_admin: true, created_at: new Date().toISOString() }
+    { id: 'admin-1', email: 'admin@clinexa.com', password: '240be518fabd2724ddb6f0403f3d5dabb2a4e24560193dba9d17d1679b772473', full_name: 'Admin', is_admin: true, created_at: new Date().toISOString() },
+    { id: 'doc-user-1', email: 'sarah.johnson@clinexa.com', password: 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113', full_name: 'Dr. Sarah Johnson', is_doctor: true, created_at: new Date().toISOString() },
+    { id: 'doc-user-2', email: 'michael.chen@clinexa.com', password: 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113', full_name: 'Dr. Michael Chen', is_doctor: true, created_at: new Date().toISOString() },
+    { id: 'doc-user-3', email: 'emily.rodriguez@clinexa.com', password: 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113', full_name: 'Dr. Emily Rodriguez', is_doctor: true, created_at: new Date().toISOString() },
+    { id: 'doc-user-4', email: 'james.wilson@clinexa.com', password: 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113', full_name: 'Dr. James Wilson', is_doctor: true, created_at: new Date().toISOString() },
+    { id: 'doc-user-5', email: 'priya.patel@clinexa.com', password: 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113', full_name: 'Dr. Priya Patel', is_doctor: true, created_at: new Date().toISOString() }
   ],
-  profiles: [],
+  profiles: [
+    { id: 'doc-user-1', full_name: 'Dr. Sarah Johnson', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+    { id: 'doc-user-2', full_name: 'Dr. Michael Chen', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+    { id: 'doc-user-3', full_name: 'Dr. Emily Rodriguez', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+    { id: 'doc-user-4', full_name: 'Dr. James Wilson', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+    { id: 'doc-user-5', full_name: 'Dr. Priya Patel', created_at: new Date().toISOString(), updated_at: new Date().toISOString() }
+  ],
   appointments: [],
   reviews: [],
   donor_profiles: [],
   emergency_blood_requests: [],
   blood_notifications: [],
   donation_requests: [],
-  user_roles: []
+  lab_tests: [
+    {
+      id: "lab-1",
+      name: "Comprehensive Blood Panel",
+      price: 120,
+      prep: "Fast for 10 hours, stay hydrated.",
+      turnaround: "Same day",
+      lab_name: "Clinexa Diagnostics",
+      location: "New York, NY",
+      summary: "Covers CBC, kidney and liver function, vitamin D, and cholesterol.",
+      category: "Blood Test",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: "lab-2",
+      name: "Advanced Cardiac Check",
+      price: 190,
+      prep: "Avoid caffeine for 12 hours.",
+      turnaround: "24 hours",
+      lab_name: "Metro Health Labs",
+      location: "Brooklyn, NY",
+      summary: "Includes a lipid panel, hs-CRP, NT-proBNP, and echo referral.",
+      category: "Cardiac Panel",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: "lab-3",
+      name: "Women's Health Panel",
+      price: 155,
+      prep: "Light breakfast okay, skip supplements.",
+      turnaround: "Next day",
+      lab_name: "Harbor Women's Lab",
+      location: "Queens, NY",
+      summary: "Hormonal panel, iron studies, thyroid function, and osteoporosis markers.",
+      category: "Women's Health",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: "lab-4",
+      name: "Diabetes Risk Panel",
+      price: 135,
+      prep: "Fast for 8 hours, bring glucose log.",
+      turnaround: "Same day",
+      lab_name: "Clinexa Diagnostics",
+      location: "Manhattan, NY",
+      summary: "A1c, fasting glucose, insulin resistance markers, and dietitian follow-up plan.",
+      category: "Endocrine/Diabetes",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: "lab-5",
+      name: "Liver & Kidney Wellness Screen",
+      price: 145,
+      prep: "Avoid alcohol and medications (if safe) for 48 hours.",
+      turnaround: "24 hours",
+      lab_name: "Harbor Women's Lab",
+      location: "Queens, NY",
+      summary: "CMP plus GGT, albumin, and urinary microalbumin to monitor detox and filtration.",
+      category: "Pathology",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: "lab-6",
+      name: "Executive Travel Health Check",
+      price: 210,
+      prep: "Up-to-date vaccines, fast optional.",
+      turnaround: "48 hours",
+      lab_name: "Metro Health Labs",
+      location: "Brooklyn, NY",
+      summary: "Includes CRP, hepatitis screen, malaria quick test, and travel risk recommendations.",
+      category: "Travel Health",
+      created_at: new Date().toISOString()
+    },
+    {
+      id: "lab-7",
+      name: "Immunity Booster Panel",
+      price: 165,
+      prep: "No special prep; stay hydrated.",
+      turnaround: "Next day",
+      lab_name: "Clinexa Diagnostics",
+      location: "New York, NY",
+      summary: "Vitamin D, zinc, ferritin, CBC, and inflammation markers for immune resilience.",
+      category: "Wellness & Immunity",
+      created_at: new Date().toISOString()
+    }
+  ],
+  user_roles: [
+    { id: 'role-doc-1', user_id: 'doc-user-1', role: 'doctor', doctor_id: 'doc-1', created_at: new Date().toISOString() },
+    { id: 'role-doc-2', user_id: 'doc-user-2', role: 'doctor', doctor_id: 'doc-2', created_at: new Date().toISOString() },
+    { id: 'role-doc-3', user_id: 'doc-user-3', role: 'doctor', doctor_id: 'doc-3', created_at: new Date().toISOString() },
+    { id: 'role-doc-4', user_id: 'doc-user-4', role: 'doctor', doctor_id: 'doc-4', created_at: new Date().toISOString() },
+    { id: 'role-doc-5', user_id: 'doc-user-5', role: 'doctor', doctor_id: 'doc-5', created_at: new Date().toISOString() }
+  ]
 };
 
 let db: typeof SCHEMA = { ...SCHEMA };
@@ -130,12 +234,21 @@ function generateId(): string {
   return 'id-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now().toString(36);
 }
 
+export async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 export function initDatabase(): typeof SCHEMA {
   const savedData = loadFromStorage();
   
   if (savedData) {
     db = savedData;
     ensureAdminUser();
+    ensureDoctorUsers();
   } else {
     db = JSON.parse(JSON.stringify(SEED_DATA));
     saveToStorage();
@@ -153,7 +266,7 @@ function ensureAdminUser() {
     const adminUser = { 
       id: 'admin-1', 
       email: 'admin@clinexa.com', 
-      password: 'admin123', 
+      password: '240be518fabd2724ddb6f0403f3d5dabb2a4e24560193dba9d17d1679b772473', 
       full_name: 'Admin', 
       is_admin: true, 
       created_at: new Date().toISOString() 
@@ -161,6 +274,68 @@ function ensureAdminUser() {
     db.users.push(adminUser);
     saveToStorage();
     console.log('Admin user added');
+  }
+}
+
+const SEED_DOCTOR_ACCOUNTS = [
+  { userId: 'doc-user-1', email: 'sarah.johnson@clinexa.com', fullName: 'Dr. Sarah Johnson', doctorId: 'doc-1', roleId: 'role-doc-1' },
+  { userId: 'doc-user-2', email: 'michael.chen@clinexa.com', fullName: 'Dr. Michael Chen', doctorId: 'doc-2', roleId: 'role-doc-2' },
+  { userId: 'doc-user-3', email: 'emily.rodriguez@clinexa.com', fullName: 'Dr. Emily Rodriguez', doctorId: 'doc-3', roleId: 'role-doc-3' },
+  { userId: 'doc-user-4', email: 'james.wilson@clinexa.com', fullName: 'Dr. James Wilson', doctorId: 'doc-4', roleId: 'role-doc-4' },
+  { userId: 'doc-user-5', email: 'priya.patel@clinexa.com', fullName: 'Dr. Priya Patel', doctorId: 'doc-5', roleId: 'role-doc-5' },
+];
+
+function ensureDoctorUsers() {
+  let changed = false;
+  for (const doc of SEED_DOCTOR_ACCOUNTS) {
+    const userIndex = (db.users as any[]).findIndex((u: any) => u.id === doc.userId);
+    if (userIndex === -1) {
+      db.users.push({
+        id: doc.userId,
+        email: doc.email,
+        password: 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113',
+        full_name: doc.fullName,
+        is_doctor: true,
+        created_at: new Date().toISOString(),
+      });
+      changed = true;
+    } else {
+      // Update password if it's the old hash or plain text
+      const currentUser = db.users[userIndex];
+      if (currentUser.password !== 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113') {
+        currentUser.password = 'f348d5628621f3d8f59c8cabda0f8eb0aa7e0514a90be7571020b1336f26c113';
+        changed = true;
+      }
+    }
+
+    const profileExists = (db.profiles as any[]).some((p: any) => p.id === doc.userId);
+    if (!profileExists) {
+      db.profiles.push({
+        id: doc.userId,
+        full_name: doc.fullName,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      });
+      changed = true;
+    }
+
+    const roleExists = (db.user_roles as any[]).some(
+      (r: any) => r.user_id === doc.userId && r.role === 'doctor'
+    );
+    if (!roleExists) {
+      db.user_roles.push({
+        id: doc.roleId,
+        user_id: doc.userId,
+        role: 'doctor',
+        doctor_id: doc.doctorId,
+        created_at: new Date().toISOString(),
+      });
+      changed = true;
+    }
+  }
+  if (changed) {
+    saveToStorage();
+    console.log('Doctor user accounts ensured');
   }
 }
 

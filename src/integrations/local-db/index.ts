@@ -1,4 +1,4 @@
-import { initDatabase, runQuery, insertRecord, updateRecord, deleteRecord, generateId } from './client';
+import { initDatabase, runQuery, insertRecord, updateRecord, deleteRecord, generateId, hashPassword } from './client';
 
 let currentUser: { id: string; email: string } | null = null;
 
@@ -109,13 +109,15 @@ export const localDb = {
       return { data: { subscription: { unsubscribe: () => {} } } };
     },
     signInWithPassword: async ({ email, password }: { email: string; password: string }) => {
-      const users = runQuery('users').filter((u: any) => u.email === email && u.password === password);
+      const hashedPassword = await hashPassword(password);
+      const users = runQuery('users').filter((u: any) => u.email === email && u.password === hashedPassword);
       if (users.length > 0) {
         currentUser = { id: users[0].id, email: users[0].email };
         return { data: { user: currentUser, session: { user: currentUser } }, error: null };
       }
+      
       const id = generateId();
-      insertRecord('users', { email, password, full_name: email.split('@')[0], created_at: new Date().toISOString() });
+      insertRecord('users', { email, password: hashedPassword, full_name: email.split('@')[0], created_at: new Date().toISOString() });
       currentUser = { id, email };
       insertRecord('profiles', { id, full_name: email.split('@')[0], created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
       insertRecord('user_roles', { user_id: id, role: 'patient', created_at: new Date().toISOString() });
@@ -127,7 +129,8 @@ export const localDb = {
         return { data: { user: null, session: null }, error: { message: 'User already exists' } };
       }
       const id = generateId();
-      insertRecord('users', { email, password, full_name: email.split('@')[0], created_at: new Date().toISOString() });
+      const hashedPassword = await hashPassword(password);
+      insertRecord('users', { email, password: hashedPassword, full_name: email.split('@')[0], created_at: new Date().toISOString() });
       currentUser = { id, email };
       insertRecord('profiles', { id, full_name: email.split('@')[0], created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
       insertRecord('user_roles', { user_id: id, role: 'patient', created_at: new Date().toISOString() });
@@ -174,7 +177,8 @@ export const localDb = {
   },
   adminAuth: {
     login: async (email: string, password: string) => {
-      const users = runQuery('users').filter((u: any) => u.email === email && u.password === password && u.is_admin);
+      const hashedPassword = await hashPassword(password);
+      const users = runQuery('users').filter((u: any) => u.email === email && u.password === hashedPassword && u.is_admin);
       if (users.length > 0) {
         currentUser = { id: users[0].id, email: users[0].email };
         return { success: true, error: null };
@@ -208,4 +212,4 @@ export function getCurrentUser() {
   return currentUser;
 }
 
-export { runQuery, insertRecord, generateId } from './client';
+export { runQuery, insertRecord, updateRecord, generateId, hashPassword } from './client';

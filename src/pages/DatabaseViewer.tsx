@@ -16,6 +16,7 @@ const TABLES = [
   "specializations",
   "appointments",
   "reviews",
+  "lab_appointments",
   "blood_banks",
   "blood_inventory",
   "donor_profiles",
@@ -157,11 +158,6 @@ export default function DatabaseViewer() {
             </Button>
           </div>
 
-          <div className="mt-4 p-3 bg-muted rounded-lg text-sm text-muted-foreground">
-            <p className="font-medium">Default Admin Credentials:</p>
-            <p>Email: admin@clinexa.com</p>
-            <p>Password: admin123</p>
-          </div>
         </Card>
       </div>
     );
